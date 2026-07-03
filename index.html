@@ -380,6 +380,34 @@
   .leano-mark:hover{background:#1a2b25;}
   .leano-mark svg{width:14px; height:14px;}
 
+  /* ---------- PODRŽI RAZVOJ ---------- */
+  .support-card{
+    background:linear-gradient(135deg, #241a14, var(--card) 60%);
+    border:1px solid #4a2f1f;
+    border-radius:16px;
+    padding:44px;
+    display:flex;
+    align-items:center;
+    gap:26px;
+    flex-wrap:wrap;
+  }
+  .support-icon{
+    width:56px; height:56px;
+    border-radius:14px;
+    background:rgba(255,106,61,.14);
+    border:1px solid rgba(255,106,61,.4);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .support-icon svg{width:26px; height:26px; color:var(--accent-2);}
+  .support-card > div:nth-child(2){flex:1; min-width:240px;}
+  .support-card h2{font-size:24px; margin-bottom:8px;}
+  .support-card p{color:var(--text-dim); font-size:15px; max-width:520px;}
+  .btn-support{
+    background:var(--accent-2);
+    color:#2a1206;
+  }
+
   /* ---------- KONTAKT ---------- */
   .contact-grid{
     display:grid;
@@ -441,12 +469,15 @@
     .contact-grid{grid-template-columns:1fr;}
     .leano-card{padding:34px;}
     .insta-card{padding:28px;}
+    .support-card{padding:28px;}
   }
   @media (max-width:520px){
     .services{grid-template-columns:1fr;}
     .hero{padding:140px 0 70px;}
     .insta-card{flex-direction:column; align-items:flex-start; text-align:left;}
     .insta-card .btn{width:100%; text-align:center;}
+    .support-card{flex-direction:column; align-items:flex-start; text-align:left;}
+    .support-card .btn{width:100%; text-align:center;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -467,13 +498,14 @@
 <header>
   <nav>
     <a href="#" class="logo" aria-label="OptiCora početna">
-      <img src="opticora-logo-dark.png" alt="" width="44" height="44">
+      <img src="opticora-icon-dark.png" alt="" width="40" height="40">
       OPTICORA
     </a>
     <div class="navlinks">
       <a href="#usluge">Usluge</a>
       <a href="#galerija">Galerija</a>
       <a href="#leanopedija">Leanopedija</a>
+      <a href="#podrska">Podrška</a>
       <a href="#kontakt">Kontakt</a>
     </div>
     <a href="#kontakt" class="nav-cta">Zatraži ponudu</a>
@@ -591,6 +623,21 @@
   </div>
 </section>
 
+<section id="podrska">
+  <div class="wrap">
+    <div class="support-card reveal">
+      <div class="support-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <div>
+        <h2>Podrži mladi hrvatski obrt</h2>
+        <p>OptiCora tek raste — svaka donacija ide u bolju opremu, materijale i vrijeme za razvoj kvalitetnijeg sadržaja i usluga.</p>
+      </div>
+      <a href="https://buymeacoffee.com/markoskiljan_opticora" class="btn btn-support" target="_blank" rel="noopener">☕ Kupi mi kavu</a>
+    </div>
+  </div>
+</section>
+
 <section id="kontakt" class="alt">
   <div class="wrap">
     <div class="contact-grid">
@@ -633,7 +680,7 @@
 <footer>
   <div class="wrap footer-inner">
     <div class="logo" style="font-size:14px;">
-      <img src="opticora-logo-dark.png" alt="" width="30" height="30">
+      <img src="opticora-icon-dark.png" alt="" width="26" height="26">
       OPTICORA
     </div>
     <div class="footer-meta">
