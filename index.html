@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OptiCora — 3D modeliranje i printanje po mjeri</title>
+<meta name="description" content="OptiCora izrađuje 3D modele i ispise po mjeri — od prototipa do gotovog proizvoda. Obrt iz Samobora, Hrvatska.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121316;
+    --bg-alt:#1a1c20;
+    --card:#1d2024;
+    --line:#2a2d33;
+    --text:#eef0f2;
+    --text-dim:#9aa0a8;
+    --accent:#2f9e44;
+    --accent-2:#ff6a3d;
+    --accent-3:#29e0c9;
+    --leano:#1a7a5e;
+    --radius:10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;
+    height:1px;
+    background:var(--accent);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(18,19,22,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1140px;
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:17px;
+    letter-spacing:.04em;
+  }
+  .logo svg{width:30px; height:30px;}
+  .navlinks{
+    display:flex;
+    gap:32px;
+    font-size:14px;
+    font-weight:500;
+  }
+  .navlinks a{
+    color:var(--text-dim);
+    transition:color .2s;
+    position:relative;
+    padding-bottom:3px;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute;
+    left:0; right:100%; bottom:-2px;
+    height:1px;
+    background:var(--accent);
+    transition:right .25s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--text);}
+  .navlinks a:hover::after, .navlinks a:focus-visible::after{right:0;}
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity .7s cubic-bezier(.16,.8,.3,1), transform .7s cubic-bezier(.16,.8,.3,1);
+  }
+  .reveal.revealed{opacity:1; transform:translateY(0);}
+  .nav-cta{
+    padding:9px 18px;
+    border:1px solid var(--accent);
+    border-radius:6px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--accent) !important;
+    transition:background .2s, color .2s;
+  }
+  .nav-cta:hover{background:var(--accent); color:var(--bg) !important;}
+  .navtoggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:168px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+    opacity:.25;
+    mask-image:radial-gradient(ellipse at 50% 0%, black 0%, transparent 70%);
+  }
+  .hero-inner{position:relative; text-align:center;}
+  .hero h1{
+    font-size:clamp(42px, 8vw, 88px);
+    font-weight:800;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    line-height:1;
+    margin:22px 0 20px;
+  }
+  .hero h1 .layered{
+    display:inline-block;
+    background:linear-gradient(var(--text) 0 0);
+    background-repeat:no-repeat;
+    background-size:100% 0%;
+    background-position:bottom;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:printLayers 1.8s steps(9) forwards;
+  }
+  @keyframes printLayers{
+    to{background-size:100% 100%;}
+  }
+  .hero .accent-word{color:var(--accent);}
+  .hero p.lead{
+    max-width:520px;
+    margin:0 auto 36px;
+    color:var(--text-dim);
+    font-size:17px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .hero .eyebrow, .hero h1, .hero p.lead, .hero-ctas{
+    opacity:0;
+    animation:heroFade .7s ease forwards;
+  }
+  .hero .eyebrow{animation-delay:.05s;}
+  .hero h1{animation-delay:.15s;}
+  .hero p.lead{animation-delay:1.9s;}
+  .hero-ctas{animation-delay:2.05s;}
+  @keyframes heroFade{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .btn{
+    padding:13px 26px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:.02em;
+    transition:transform .15s, opacity .15s;
+    display:inline-block;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--accent); color:#181008;}
+  .btn-ghost{border:1px solid var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim);}
+
+  .nozzle-rig{
+    margin:56px auto 0;
+    width:220px;
+    height:40px;
+    opacity:.9;
+  }
+  .nozzle-head{
+    animation:nozzleTravel 3.6s ease-in-out infinite;
+    filter:drop-shadow(0 0 5px var(--accent-2));
+  }
+  @keyframes nozzleTravel{
+    0%, 100%{transform:translateX(14px);}
+    50%{transform:translateX(184px);}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:560px;
+    margin:0 0 52px;
+  }
+  .section-head h2{
+    font-size:clamp(28px,4vw,38px);
+    margin-top:14px;
+    letter-spacing:-.01em;
+  }
+  .section-head p{color:var(--text-dim); margin-top:14px; font-size:15.5px;}
+  .alt{background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- USLUGE ---------- */
+  .services{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .service-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 26px;
+    transition:border-color .2s, transform .2s;
+  }
+  .service-card:hover{border-color:var(--accent); transform:translateY(-4px);}
+  .service-card .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent-2);
+    letter-spacing:.1em;
+  }
+  .service-card svg{width:36px; height:36px; margin:18px 0 16px; color:var(--accent);}
+  .service-card h3{font-size:18px; margin-bottom:10px;}
+  .service-card p{color:var(--text-dim); font-size:14.5px;}
+
+  /* ---------- INSTAGRAM CALLOUT ---------- */
+  .insta-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:40px;
+    display:flex;
+    align-items:center;
+    gap:26px;
+    flex-wrap:wrap;
+  }
+  .insta-icon{
+    width:56px; height:56px;
+    border-radius:14px;
+    background:rgba(47,158,68,.12);
+    border:1px solid rgba(47,158,68,.35);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .insta-icon svg{width:26px; height:26px; color:var(--accent);}
+  .insta-card h3{font-size:18px; margin-bottom:6px;}
+  .insta-card p{color:var(--text-dim); font-size:14.5px;}
+  .insta-card > div:nth-child(2){flex:1; min-width:220px;}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    margin-top:64px;
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:16px 0;
+  }
+  .marquee-track{
+    display:inline-flex;
+    white-space:nowrap;
+    animation:marqueeScroll 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:.12em;
+    color:var(--text-dim);
+    padding:0 18px;
+  }
+  .marquee-track span:nth-child(4n+2){color:var(--accent);}
+  @keyframes marqueeScroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- LEANOPEDIJA CROSS-PROMO ---------- */
+  .leano-card{
+    background:linear-gradient(135deg, #14201c, var(--bg-alt) 60%);
+    border:1px solid #24463b;
+    border-radius:16px;
+    padding:52px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .leano-card .eyebrow{color:var(--leano);}
+  .leano-card .eyebrow::before{background:var(--leano);}
+  .leano-card h2{font-size:32px; margin:14px 0 14px; max-width:460px;}
+  .leano-card p{color:var(--text-dim); max-width:440px; font-size:15px;}
+  .leano-features{
+    list-style:none;
+    margin:22px 0 0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    max-width:460px;
+  }
+  .leano-features li{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:14px;
+    color:var(--text);
+  }
+  .leano-features svg{width:15px; height:15px; color:var(--leano); flex-shrink:0;}
+  .leano-mark{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:800;
+    font-size:15px;
+    color:var(--leano);
+    border:1px solid #2c5c4b;
+    border-radius:8px;
+    padding:10px 16px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:22px;
+    transition:background .2s;
+  }
+  .leano-mark:hover{background:#1a2b25;}
+  .leano-mark svg{width:14px; height:14px;}
+
+  /* ---------- KONTAKT ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:start;
+  }
+  .contact-list{list-style:none; margin-top:28px;}
+  .contact-list li{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  .contact-list li:last-child{border-bottom:none;}
+  .contact-list svg{width:20px; height:20px; color:var(--accent); flex-shrink:0;}
+  .contact-list .label{font-size:12px; color:var(--text-dim); font-family:'JetBrains Mono', monospace; letter-spacing:.06em;}
+  .contact-list .value{font-size:15.5px; font-weight:500;}
+  .quote-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+  }
+  .quote-box h3{font-size:17px; margin-bottom:8px;}
+  .quote-box p{color:var(--text-dim); font-size:14.5px; margin-bottom:22px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-inner .logo{font-size:14px;}
+  .footer-meta{
+    font-size:12.5px;
+    color:var(--text-dim);
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .made-in{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--accent-2);
+  }
+
+  @media (max-width:820px){
+    .navlinks{display:none;}
+    .services{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .leano-card{padding:34px;}
+    .insta-card{padding:28px;}
+  }
+  @media (max-width:520px){
+    .services{grid-template-columns:1fr;}
+    .hero{padding:140px 0 70px;}
+    .insta-card{flex-direction:column; align-items:flex-start; text-align:left;}
+    .insta-card .btn{width:100%; text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero h1 .layered{animation:none; background-size:100% 100%;}
+    .btn:hover, .service-card:hover{transform:none;}
+    .hero .eyebrow, .hero h1, .hero p.lead, .hero-ctas{animation:none; opacity:1; transform:none;}
+    .nozzle-head{animation:none;}
+    .marquee-track{animation:none;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .gallery-item:hover{transform:none;}
+  }
+
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="logo" aria-label="OptiCora početna">
+      <img src="assets/opticora-logo.png" alt="" width="32" height="32">
+      OPTICORA
+    </a>
+    <div class="navlinks">
+      <a href="#usluge">Usluge</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#leanopedija">Leanopedija</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <a href="#kontakt" class="nav-cta">Zatraži ponudu</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow" style="justify-content:center;">Obrt za 3D izradu · Samobor, Hrvatska</div>
+    <h1><span class="layered">Gradimo</span> <span class="accent-word">sloj po sloj</span></h1>
+    <p class="lead">OptiCora pretvara ideje u fizičke objekte — od 3D modela do gotovog ispisa, precizno i po mjeri.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn btn-primary">Zatraži ponudu</a>
+      <a href="#usluge" class="btn btn-ghost">Pogledaj usluge</a>
+    </div>
+    <div class="nozzle-rig" aria-hidden="true">
+      <svg viewBox="0 0 220 40" width="220" height="40">
+        <line x1="10" y1="20" x2="210" y2="20" stroke="var(--line)" stroke-width="2"/>
+        <g class="nozzle-head">
+          <rect x="-8" y="8" width="16" height="16" rx="3" fill="var(--accent-2)"/>
+          <line x1="0" y1="24" x2="0" y2="34" stroke="var(--accent-2)" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="leanopedija">
+  <div class="wrap">
+    <div class="leano-card reveal">
+      <div>
+        <div class="eyebrow">Sestrinski projekt</div>
+        <h2>Iza OptiCore stoji i Leanopedija</h2>
+        <p>Naš tim vodi i Leanopedija.hr — prvi centralizirani hrvatski resurs za Lean metodologiju, s alatima, vodičima i kalkulatorima za proizvodne timove.</p>
+        <ul class="leano-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>OEE, 5S i Gemba alati</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vodiči korak-po-korak</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Kaizen i A3 predlošci</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Rastuća zajednica prakse</li>
+        </ul>
+        <a href="https://leanopedija.hr" class="leano-mark" target="_blank" rel="noopener">
+          Posjeti leanopedija.hr
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <rect x="10" y="90" width="100" height="8" rx="2" fill="var(--leano)" opacity="0.9"/>
+        <rect x="20" y="72" width="80" height="8" rx="2" fill="var(--leano)" opacity="0.7"/>
+        <rect x="30" y="54" width="60" height="8" rx="2" fill="var(--leano)" opacity="0.5"/>
+        <rect x="42" y="36" width="36" height="8" rx="2" fill="var(--leano)" opacity="0.35"/>
+        <rect x="52" y="18" width="16" height="8" rx="2" fill="var(--accent-2)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="usluge">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Usluge</div>
+      <h2>Od ideje do objekta u ruci</h2>
+      <p>Svaki projekt prolazi kroz isti princip preciznosti — bilo da modeliramo od nule ili printamo gotov dizajn.</p>
+    </div>
+    <div class="services">
+      <div class="service-card reveal" style="transition-delay:.05s">
+        <div class="num">01</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+        <h3>3D modeliranje</h3>
+        <p>Izrada 3D modela po nacrtu, skici ili gotovom uzorku — spremnih za print ili proizvodnju.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.15s">
+        <div class="num">02</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4v16M4 12h16"/></svg>
+        <h3>3D printanje</h3>
+        <p>FDM ispis u PETG, PETG-CF i PLA-CF materijalima — za funkcionalne i izdržljive dijelove.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.25s">
+        <div class="num">03</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+        <h3>Prototipovi i custom izrada</h3>
+        <p>Brzi prototipovi i jednokratni komadi po narudžbi — za hobi, obrt ili malu proizvodnju.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galerija" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Primjeri radova</div>
+      <h2>Izrade pratimo uživo na Instagramu</h2>
+      <p>Redovno objavljujemo nove printeve, modele i "work in progress" — najbrži uvid u ono što trenutno izlazi iz printera.</p>
+    </div>
+    <div class="insta-card reveal">
+      <div class="insta-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </div>
+      <div>
+        <h3>@opticora.hr</h3>
+        <p>Fotografije i videi svježih izradaka, materijala i procesa printanja.</p>
+      </div>
+      <a href="https://www.instagram.com/opticora.hr/" class="btn btn-primary" target="_blank" rel="noopener">Otvori Instagram</a>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>CUSTOM IZRADA</span><span>·</span>
+      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>CUSTOM IZRADA</span><span>·</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="alt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Kontakt</div>
+        <h2 style="font-size:clamp(26px,4vw,34px); margin-top:14px;">Imaš ideju? Napravimo je zajedno.</h2>
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6l9 6 9-6M3 6h18v12H3V6z"/></svg>
+            <div>
+              <div class="label">EMAIL</div>
+              <div class="value">info@opticora.hr</div>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            <div>
+              <div class="label">INSTAGRAM</div>
+              <div class="value">@opticora.hr</div>
+            </div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <div>
+              <div class="label">LOKACIJA</div>
+              <div class="value">Samobor, Hrvatska</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="quote-box reveal" style="transition-delay:.1s">
+        <h3>Zatraži ponudu</h3>
+        <p>Pošalji nam opis ili nacrt onoga što trebaš — javljamo se s procjenom cijene i roka izrade.</p>
+        <a href="mailto:info@opticora.hr" class="btn btn-primary" style="width:100%; text-align:center;">Pošalji upit na email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo" style="font-size:14px;">
+      <img src="assets/opticora-logo.png" alt="" width="22" height="22">
+      OPTICORA
+    </div>
+    <div class="footer-meta">
+      <span>OptiCora obrt, vl. Marko Škiljan</span>
+      <span class="made-in">100% Made in Croatia (EU)</span>
+      <span>© 2026 OptiCora</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('revealed'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
