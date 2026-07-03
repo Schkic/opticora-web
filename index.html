@@ -7,7 +7,7 @@
 <meta name="description" content="OptiCora izrađuje 3D modele i ispise po mjeri — od prototipa do gotovog proizvoda. Obrt iz Samobora, Hrvatska.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#121316;
@@ -325,6 +325,28 @@
   .leano-card .eyebrow::before{background:var(--leano);}
   .leano-card h2{font-size:32px; margin:14px 0 14px; max-width:460px;}
   .leano-card p{color:var(--text-dim); max-width:440px; font-size:15px;}
+  .leano-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .leano-brand-mark{
+    width:30px; height:30px;
+    background:var(--leano);
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .leano-brand-word{
+    font-family:'DM Serif Display', serif;
+    font-size:20px;
+    color:var(--text);
+  }
   .leano-features{
     list-style:none;
     margin:22px 0 0;
@@ -445,7 +467,7 @@
 <header>
   <nav>
     <a href="#" class="logo" aria-label="OptiCora početna">
-      <img src="opticora-logo-dark.png" alt="" width="32" height="32">
+      <img src="opticora-logo-dark.png" alt="" width="44" height="44">
       OPTICORA
     </a>
     <div class="navlinks">
@@ -484,6 +506,10 @@
   <div class="wrap">
     <div class="leano-card reveal">
       <div>
+        <div class="leano-brand">
+          <div class="leano-brand-mark">L°</div>
+          <div class="leano-brand-word">Leanopedija</div>
+        </div>
         <div class="eyebrow">Sestrinski projekt</div>
         <h2>Iza OptiCore stoji i Leanopedija</h2>
         <p>Naš tim vodi i Leanopedija.hr — prvi centralizirani hrvatski resurs za Lean metodologiju, s alatima, vodičima i kalkulatorima za proizvodne timove.</p>
@@ -607,7 +633,7 @@
 <footer>
   <div class="wrap footer-inner">
     <div class="logo" style="font-size:14px;">
-      <img src="opticora-logo-dark.png" alt="" width="22" height="22">
+      <img src="opticora-logo-dark.png" alt="" width="30" height="30">
       OPTICORA
     </div>
     <div class="footer-meta">
