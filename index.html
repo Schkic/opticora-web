@@ -3,11 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OptiCora — 3D modeliranje i printanje po mjeri</title>
-<meta name="description" content="OptiCora izrađuje 3D modele i ispise po mjeri — od prototipa do gotovog proizvoda. Obrt iz Samobora, Hrvatska.">
+<title>OptiCora | 3D printanje, modeliranje i digitalna rješenja</title>
+<meta name="description" content="OptiCora iz Samobora razvija 3D modele, prototipove, 3D printane dijelove i praktična digitalna rješenja poput WelcomeKioska.">
+<link rel="canonical" href="https://opticora.hr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://opticora.hr/">
+<meta property="og:title" content="OptiCora | 3D printanje, modeliranje i digitalna rješenja">
+<meta property="og:description" content="3D modeliranje, 3D printanje, prototipovi i praktična digitalna rješenja razvijena u Samoboru.">
+<meta property="og:image" content="https://opticora.hr/opticora-logo.png">
+<meta property="og:locale" content="hr_HR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OptiCora | 3D printanje, modeliranje i digitalna rješenja">
+<meta name="twitter:description" content="3D modeliranje, 3D printanje, prototipovi i praktična digitalna rješenja razvijena u Samoboru.">
+<meta name="twitter:image" content="https://opticora.hr/opticora-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "OptiCora",
+  "url": "https://opticora.hr/",
+  "description": "3D modeliranje, 3D printanje, prototipovi i praktična digitalna rješenja.",
+  "email": "info@opticora.hr",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Samobor",
+    "addressCountry": "HR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/opticora.hr/"
+  ]
+}
+</script>
 <style>
   :root{
     --bg:#121316;
@@ -463,6 +493,83 @@
     color:var(--accent-2);
   }
 
+
+  /* ---------- PROJECTS / PRODUCTS ---------- */
+  .project-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:34px;position:relative;overflow:hidden;}
+  .project-card h3{font-size:26px;margin:12px 0 12px;}
+  .project-card p{color:var(--text-dim);font-size:15px;max-width:760px;}
+  .project-card .project-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .project-card .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+  .project-card .tag{font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:var(--text-dim);}
+  .mini-list{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px;}
+  .mini-item{display:flex;gap:10px;}
+  .mini-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:11px;padding-top:2px;flex-shrink:0;}
+  .mini-item strong{display:block;font-size:13px;margin-bottom:2px;}
+  .mini-item span{display:block;color:var(--text-dim);font-size:12.5px;}
+  @media (max-width:700px){.mini-list{grid-template-columns:1fr;}}
+
+  /* screenshot carousel */
+  .carousel{margin-top:8px; max-width:640px;}
+  .carousel-frame{
+    position:relative;
+    background:#eef2f5;
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 16px 40px rgba(0,0,0,.22);
+    height:420px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .carousel-frame img{
+    max-width:100%; max-height:100%;
+    width:auto; height:auto;
+    display:block;
+    object-fit:contain;
+    opacity:0;
+    position:absolute;
+    transition:opacity .35s ease;
+  }
+  .carousel-frame img.active{opacity:1; position:relative;}
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:36px; height:36px;
+    border-radius:50%;
+    background:rgba(18,19,22,.55);
+    border:1px solid rgba(255,255,255,.15);
+    color:#fff;
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s;
+    z-index:2;
+  }
+  .carousel-arrow:hover{background:rgba(18,19,22,.85);}
+  .carousel-arrow.prev{left:10px;}
+  .carousel-arrow.next{right:10px;}
+  .carousel-caption{
+    margin-top:12px;
+    font-size:13px;
+    color:var(--text-dim);
+    text-align:center;
+  }
+  .carousel-caption strong{color:var(--text); font-weight:600;}
+  .carousel-dots{display:flex; justify-content:center; gap:7px; margin-top:12px;}
+  .carousel-dots button{
+    width:7px; height:7px;
+    border-radius:50%;
+    border:none;
+    background:var(--line);
+    cursor:pointer;
+    padding:0;
+    transition:background .2s, transform .2s;
+  }
+  .carousel-dots button.active{background:var(--accent); transform:scale(1.3);}
+
+  .preview-hint{display:flex;gap:10px;align-items:flex-start;margin-top:16px;color:var(--text-dim);font-size:12.5px;}
+  .preview-hint svg{width:16px;height:16px;flex:0 0 auto;color:var(--accent);margin-top:2px;}
+  @media (max-width:560px){.project-card{padding:24px;} .carousel-frame{height:320px;}}
+
   @media (max-width:820px){
     .navlinks{display:none;}
     .services{grid-template-columns:1fr 1fr;}
@@ -497,13 +604,14 @@
 
 <header>
   <nav>
-    <a href="#" class="logo" aria-label="OptiCora početna">
+    <a href="/" class="logo" aria-label="OptiCora početna">
       <img src="opticora-icon-dark.png" alt="" width="40" height="40">
       OPTICORA
     </a>
     <div class="navlinks">
       <a href="#usluge">Usluge</a>
       <a href="#galerija">Galerija</a>
+      <a href="#projekti">Projekti</a>
       <a href="#leanopedija">Leanopedija</a>
       <a href="#podrska">Podrška</a>
       <a href="#kontakt">Kontakt</a>
@@ -515,9 +623,9 @@
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="wrap hero-inner">
-    <div class="eyebrow" style="justify-content:center;">Obrt za 3D izradu · Samobor, Hrvatska</div>
-    <h1><span class="layered">Gradimo</span> <span class="accent-word">sloj po sloj</span></h1>
-    <p class="lead">OptiCora pretvara ideje u fizičke objekte — od 3D modela do gotovog ispisa, precizno i po mjeri.</p>
+    <div class="eyebrow" style="justify-content:center;">OptiCora · Samobor, Hrvatska</div>
+    <h1><span class="layered">Ideje pretvaramo</span> <span class="accent-word">u rješenja</span></h1>
+    <p class="lead">3D modeliranje, 3D printanje i praktična digitalna rješenja — od prve skice do proizvoda koji stvarno radi.</p>
     <div class="hero-ctas">
       <a href="#kontakt" class="btn btn-primary">Zatraži ponudu</a>
       <a href="#usluge" class="btn btn-ghost">Pogledaj usluge</a>
@@ -529,39 +637,6 @@
           <rect x="-8" y="8" width="16" height="16" rx="3" fill="var(--accent-2)"/>
           <line x1="0" y1="24" x2="0" y2="34" stroke="var(--accent-2)" stroke-width="2"/>
         </g>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<section id="leanopedija">
-  <div class="wrap">
-    <div class="leano-card reveal">
-      <div>
-        <div class="leano-brand">
-          <div class="leano-brand-mark">L°</div>
-          <div class="leano-brand-word">Leanopedija</div>
-        </div>
-        <div class="eyebrow">Sestrinski projekt</div>
-        <h2>Iza OptiCore stoji i Leanopedija</h2>
-        <p>Naš tim vodi i Leanopedija.hr — prvi centralizirani hrvatski resurs za Lean metodologiju, s alatima, vodičima i kalkulatorima za proizvodne timove.</p>
-        <ul class="leano-features">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>OEE, 5S i Gemba alati</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vodiči korak-po-korak</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Kaizen i A3 predlošci</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Rastuća zajednica prakse</li>
-        </ul>
-        <a href="https://leanopedija.hr" class="leano-mark" target="_blank" rel="noopener">
-          Posjeti leanopedija.hr
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-      </div>
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-        <rect x="10" y="90" width="100" height="8" rx="2" fill="var(--leano)" opacity="0.9"/>
-        <rect x="20" y="72" width="80" height="8" rx="2" fill="var(--leano)" opacity="0.7"/>
-        <rect x="30" y="54" width="60" height="8" rx="2" fill="var(--leano)" opacity="0.5"/>
-        <rect x="42" y="36" width="36" height="8" rx="2" fill="var(--leano)" opacity="0.35"/>
-        <rect x="52" y="18" width="16" height="8" rx="2" fill="var(--accent-2)"/>
       </svg>
     </div>
   </div>
@@ -590,7 +665,7 @@
       <div class="service-card reveal" style="transition-delay:.25s">
         <div class="num">03</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
-        <h3>Prototipovi i custom izrada</h3>
+        <h3>Prototipovi i izrada po mjeri</h3>
         <p>Brzi prototipovi i jednokratni komadi po narudžbi — za hobi, obrt ili malu proizvodnju.</p>
       </div>
     </div>
@@ -617,8 +692,100 @@
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>CUSTOM IZRADA</span><span>·</span>
-      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>CUSTOM IZRADA</span><span>·</span>
+      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>IZRADA PO MJERI</span><span>·</span>
+      <span>3D MODELIRANJE</span><span>·</span><span>3D PRINTANJE</span><span>·</span><span>PETG</span><span>·</span><span>PETG-CF</span><span>·</span><span>PLA-CF</span><span>·</span><span>PROTOTIPOVI</span><span>·</span><span>IZRADA PO MJERI</span><span>·</span>
+    </div>
+  </div>
+</section>
+
+<section id="projekti">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Vlastiti projekti</div>
+      <h2>Softver koji rješava stvaran problem</h2>
+      <p>Uz fizičke proizvode razvijamo i vlastita digitalna rješenja. WelcomeKiosk je web aplikacija za moderan prijem posjetitelja i pregled operativnih evidencija.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="eyebrow">WelcomeKiosk</div>
+      <h3>Od ulaza u tvrtku do administracije — u jednom sučelju</h3>
+      <p>Ekrani ispod prikazuju izmišljenu tvrtku <strong style="color:var(--text);">NovaForge d.o.o.</strong> kao primjer kako WelcomeKiosk izgleda u stvarnom poslovnom okruženju.</p>
+      <div class="tagrow">
+        <span class="tag">VISITOR KIOSK</span>
+        <span class="tag">VISITS</span>
+        <span class="tag">GREEN CROSS</span>
+      </div>
+
+      <div class="mini-list">
+        <div class="mini-item">
+          <div class="mini-num">01</div>
+          <div><strong>Kiosk za posjetitelje</strong><span>Sučelje za ekran ili tablet na ulazu.</span></div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-num">02</div>
+          <div><strong>Evidencija posjeta</strong><span>Administracijski pregled dolazaka i posjetitelja.</span></div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-num">03</div>
+          <div><strong>Green Cross</strong><span>Vizualni pregled kvalitete i operativnih zapisa.</span></div>
+        </div>
+      </div>
+
+      <div class="project-actions">
+        <a href="https://welcome-kiosk.vercel.app/" class="btn btn-primary" target="_blank" rel="noopener">Otvori WelcomeKiosk ↗</a>
+        <a href="mailto:info@opticora.hr?subject=WelcomeKiosk%20-%20upit" class="btn btn-ghost">Zatraži informacije</a>
+      </div>
+
+      <div class="carousel" id="wkCarousel">
+        <div class="carousel-frame">
+          <img src="kiosk-shot-1.png" class="active" data-caption="Početni izbornik — kiosk, signage TV, admin panel">
+          <img src="kiosk-shot-2.png" data-caption="Kiosk · odabir načina prijave">
+          <img src="kiosk-shot-3.png" data-caption="Prijava posjetitelja s tableta ili info pulta">
+          <img src="kiosk-shot-4.png" data-caption="Admin · pregled i evidencija posjeta">
+          <img src="kiosk-shot-5.png" data-caption="Admin · KPI podaci prikazani na signage ekranu">
+          <img src="kiosk-shot-6.png" data-caption="Admin · hitni slučaj i evakuacija">
+          <button type="button" class="carousel-arrow prev" aria-label="Prethodna slika">‹</button>
+          <button type="button" class="carousel-arrow next" aria-label="Sljedeća slika">›</button>
+        </div>
+        <div class="carousel-caption" id="wkCaption">Početni izbornik — kiosk, signage TV, admin panel</div>
+        <div class="carousel-dots" id="wkDots"></div>
+      </div>
+      <div class="preview-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <span>Stvarni izgled aplikacije — naziv tvrtke i logo su radi primjera zamijenjeni izmišljenima.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leanopedija" class="alt">
+  <div class="wrap">
+    <div class="leano-card reveal">
+      <div>
+        <div class="leano-brand">
+          <div class="leano-brand-mark">L°</div>
+          <div class="leano-brand-word">Leanopedija</div>
+        </div>
+        <div class="eyebrow">Znanje iz proizvodnje</div>
+        <h2>Leanopedija je naš sadržajni projekt</h2>
+        <p>Uz OptiCoru razvijamo i Leanopediju — prvi centralizirani hrvatski resurs za Lean metodologiju, s alatima, vodičima i kalkulatorima za proizvodne timove.</p>
+        <ul class="leano-features">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>OEE, 5S i Gemba alati</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vodiči korak-po-korak</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Kaizen i A3 predlošci</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Rastuća zajednica prakse</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://leanopedija.hr" class="btn btn-primary" target="_blank" rel="noopener" style="background:var(--leano); color:#fff;">Otvori Leanopediju ↗</a>
+        </div>
+      </div>
+      <svg width="130" height="130" viewBox="0 0 120 120" fill="none" style="flex-shrink:0;">
+        <rect x="10" y="90" width="100" height="8" rx="2" fill="var(--leano)" opacity="0.9"/>
+        <rect x="20" y="72" width="80" height="8" rx="2" fill="var(--leano)" opacity="0.7"/>
+        <rect x="30" y="54" width="60" height="8" rx="2" fill="var(--leano)" opacity="0.5"/>
+        <rect x="42" y="36" width="36" height="8" rx="2" fill="var(--leano)" opacity="0.35"/>
+        <rect x="52" y="18" width="16" height="8" rx="2" fill="var(--accent-2)"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -707,6 +874,37 @@
     });
   }, {threshold:0.15});
   els.forEach(function(el){ io.observe(el); });
+})();
+
+(function(){
+  var carousel = document.getElementById('wkCarousel');
+  if(!carousel) return;
+  var imgs = carousel.querySelectorAll('.carousel-frame img');
+  var caption = document.getElementById('wkCaption');
+  var dotsWrap = document.getElementById('wkDots');
+  var prevBtn = carousel.querySelector('.carousel-arrow.prev');
+  var nextBtn = carousel.querySelector('.carousel-arrow.next');
+  var current = 0;
+
+  imgs.forEach(function(_, i){
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', 'Slika ' + (i+1));
+    if(i === 0) dot.classList.add('active');
+    dot.addEventListener('click', function(){ go(i); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('button');
+
+  function go(i){
+    current = (i + imgs.length) % imgs.length;
+    imgs.forEach(function(img, idx){ img.classList.toggle('active', idx === current); });
+    dots.forEach(function(d, idx){ d.classList.toggle('active', idx === current); });
+    caption.textContent = imgs[current].getAttribute('data-caption');
+  }
+
+  prevBtn.addEventListener('click', function(){ go(current - 1); });
+  nextBtn.addEventListener('click', function(){ go(current + 1); });
 })();
 </script>
 </body>
