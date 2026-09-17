@@ -474,6 +474,11 @@
   .project-card .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
   .project-card .tag{font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:var(--text-dim);}
   .mini-list{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px;}
+  .wk-audience{margin-top:14px; font-size:13.5px; color:var(--text-dim);}
+  .wk-audience strong{color:var(--text); font-weight:600;}
+  .wk-flow-label{margin-top:26px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; color:var(--kiosk); text-transform:uppercase;}
+  .wk-flow{display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; margin-top:10px; font-size:13.5px; color:var(--text);}
+  .wk-flow .arrow{color:var(--kiosk); opacity:.7; font-size:15px;}
   .mini-item{display:flex;gap:10px;}
   .mini-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:11px;padding-top:2px;flex-shrink:0;}
   .mini-item strong{display:block;font-size:13px;margin-bottom:2px;}
@@ -678,6 +683,7 @@
       <div class="eyebrow">WelcomeKiosk</div>
       <h3>Od ulaza u tvrtku do administracije — u jednom sučelju</h3>
       <p>Ekrani ispod prikazuju izmišljenu tvrtku <strong style="color:var(--text);">NovaForge d.o.o.</strong> kao primjer kako WelcomeKiosk izgleda u stvarnom poslovnom okruženju.</p>
+      <p class="wk-audience"><strong>Za koga:</strong> proizvodni pogoni, skladišta, logističke firme, poslovne zgrade, uredi i servisi.</p>
       <div class="tagrow">
         <span class="tag">VISITOR KIOSK</span>
         <span class="tag">VISITS</span>
@@ -697,6 +703,14 @@
           <div class="mini-num">03</div>
           <div><strong>Green Cross</strong><span>Vizualni pregled kvalitete i operativnih zapisa.</span></div>
         </div>
+      </div>
+
+      <div class="wk-flow-label">Kako funkcionira</div>
+      <div class="wk-flow">
+        <span>Posjetitelj dolazi</span><span class="arrow">→</span>
+        <span>Prijavljuje se na kiosku</span><span class="arrow">→</span>
+        <span>Domaćin dobiva obavijest</span><span class="arrow">→</span>
+        <span>Posjet ostaje evidentiran</span>
       </div>
 
       <div class="project-actions">
