@@ -473,7 +473,8 @@
   .project-card .project-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
   .project-card .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
   .project-card .tag{font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:var(--text-dim);}
-  .mini-list{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px;}
+  .mini-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin-top:22px;}
+  @media (min-width:900px){.mini-list{grid-template-columns:1fr 1fr 1fr 1fr;}}
   .wk-audience{margin-top:14px; font-size:13.5px; color:var(--text-dim);}
   .wk-audience strong{color:var(--text); font-weight:600;}
   .wk-flow-label{margin-top:26px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; color:var(--kiosk); text-transform:uppercase;}
@@ -687,6 +688,7 @@
       <div class="tagrow">
         <span class="tag">VISITOR KIOSK</span>
         <span class="tag">VISITS</span>
+        <span class="tag">KPI</span>
         <span class="tag">GREEN CROSS</span>
       </div>
 
@@ -701,7 +703,11 @@
         </div>
         <div class="mini-item">
           <div class="mini-num">03</div>
-          <div><strong>Green Cross</strong><span>Vizualni pregled kvalitete i operativnih zapisa.</span></div>
+          <div><strong>KPI i najave na TV-u</strong><span>Pokazatelji, rezultati i najave na velikom ekranu.</span></div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-num">04</div>
+          <div><strong>Green Cross</strong><span>Vizualni pregled kvalitete i sigurnosti.</span></div>
         </div>
       </div>
 
