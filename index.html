@@ -410,34 +410,6 @@
   .leano-mark:hover{background:#1a2b25;}
   .leano-mark svg{width:14px; height:14px;}
 
-  /* ---------- PODRŽI RAZVOJ ---------- */
-  .support-card{
-    background:linear-gradient(135deg, #241a14, var(--card) 60%);
-    border:1px solid #4a2f1f;
-    border-radius:16px;
-    padding:44px;
-    display:flex;
-    align-items:center;
-    gap:26px;
-    flex-wrap:wrap;
-  }
-  .support-icon{
-    width:56px; height:56px;
-    border-radius:14px;
-    background:rgba(255,106,61,.14);
-    border:1px solid rgba(255,106,61,.4);
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-  }
-  .support-icon svg{width:26px; height:26px; color:var(--accent-2);}
-  .support-card > div:nth-child(2){flex:1; min-width:240px;}
-  .support-card h2{font-size:24px; margin-bottom:8px;}
-  .support-card p{color:var(--text-dim); font-size:15px; max-width:520px;}
-  .btn-support{
-    background:var(--accent-2);
-    color:#2a1206;
-  }
-
   /* ---------- KONTAKT ---------- */
   .contact-grid{
     display:grid;
@@ -576,15 +548,12 @@
     .contact-grid{grid-template-columns:1fr;}
     .leano-card{padding:34px;}
     .insta-card{padding:28px;}
-    .support-card{padding:28px;}
   }
   @media (max-width:520px){
     .services{grid-template-columns:1fr;}
     .hero{padding:140px 0 70px;}
     .insta-card{flex-direction:column; align-items:flex-start; text-align:left;}
     .insta-card .btn{width:100%; text-align:center;}
-    .support-card{flex-direction:column; align-items:flex-start; text-align:left;}
-    .support-card .btn{width:100%; text-align:center;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -613,7 +582,6 @@
       <a href="#galerija">Galerija</a>
       <a href="#projekti">Projekti</a>
       <a href="#leanopedija">Leanopedija</a>
-      <a href="#podrska">Podrška</a>
       <a href="#kontakt">Kontakt</a>
     </div>
     <a href="#kontakt" class="nav-cta">Zatraži ponudu</a>
@@ -624,8 +592,8 @@
   <div class="hero-grid"></div>
   <div class="wrap hero-inner">
     <div class="eyebrow" style="justify-content:center;">OptiCora · Samobor, Hrvatska</div>
-    <h1><span class="layered">Ideje pretvaramo</span> <span class="accent-word">u rješenja</span></h1>
-    <p class="lead">3D modeliranje, 3D printanje i praktična digitalna rješenja — od prve skice do proizvoda koji stvarno radi.</p>
+    <h1><span class="layered">Tehnička rješenja</span> <span class="accent-word">po mjeri</span></h1>
+    <p class="lead">Izrađujemo funkcionalne 3D dijelove, prototipove i digitalna rješenja — za obrte, proizvodne tvrtke, skladišta i druge poslovne korisnike kojima trebaju praktična tehnička rješenja.</p>
     <div class="hero-ctas">
       <a href="#kontakt" class="btn btn-primary">Zatraži ponudu</a>
       <a href="#usluge" class="btn btn-ghost">Pogledaj usluge</a>
@@ -646,27 +614,27 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Usluge</div>
-      <h2>Od ideje do objekta u ruci</h2>
-      <p>Svaki projekt prolazi kroz isti princip preciznosti — bilo da modeliramo od nule ili printamo gotov dizajn.</p>
+      <h2>Rješavamo konkretan problem, ne prodajemo tehnologiju</h2>
+      <p>Pukao vam je dio koji se više ne proizvodi? Treba vam nosač, kućište ili funkcionalni prototip po mjeri? Tu smo.</p>
     </div>
     <div class="services">
       <div class="service-card reveal" style="transition-delay:.05s">
         <div class="num">01</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
         <h3>3D modeliranje</h3>
-        <p>Izrada 3D modela po nacrtu, skici ili gotovom uzorku — spremnih za print ili proizvodnju.</p>
+        <p>Imate STL/STEP, fotografiju ili fizički uzorak? Izradimo model spreman za print ili proizvodnju.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:.15s">
         <div class="num">02</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 4v16M4 12h16"/></svg>
         <h3>3D printanje</h3>
-        <p>FDM ispis u PETG, PETG-CF i PLA-CF materijalima — za funkcionalne i izdržljive dijelove.</p>
+        <p>FDM ispis u PETG, PETG-CF i PLA-CF materijalima — za nosače, kućišta i druge funkcionalne dijelove.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:.25s">
         <div class="num">03</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
         <h3>Prototipovi i izrada po mjeri</h3>
-        <p>Brzi prototipovi i jednokratni komadi po narudžbi — za hobi, obrt ili malu proizvodnju.</p>
+        <p>Pojedinačni komadi i brzi prototipovi po narudžbi — ne morate naručivati seriju.</p>
       </div>
     </div>
   </div>
@@ -732,7 +700,7 @@
       </div>
 
       <div class="project-actions">
-        <a href="mailto:info@opticora.hr?subject=WelcomeKiosk%20-%20upit" class="btn btn-primary">Zatraži informacije</a>
+        <a href="mailto:info@opticora.hr?subject=WelcomeKiosk%20-%20zahtjev%20za%20demo" class="btn btn-primary">Zatraži demo</a>
       </div>
 
       <div class="carousel" id="wkCarousel">
@@ -790,21 +758,6 @@
   </div>
 </section>
 
-<section id="podrska">
-  <div class="wrap">
-    <div class="support-card reveal">
-      <div class="support-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      </div>
-      <div>
-        <h2>Podrži mladi hrvatski obrt</h2>
-        <p>OptiCora tek raste — svaka donacija ide u bolju opremu, materijale i vrijeme za razvoj kvalitetnijeg sadržaja i usluga.</p>
-      </div>
-      <a href="https://buymeacoffee.com/markoskiljan_opticora" class="btn btn-support" target="_blank" rel="noopener">☕ Kupi mi kavu</a>
-    </div>
-  </div>
-</section>
-
 <section id="kontakt" class="alt">
   <div class="wrap">
     <div class="contact-grid">
@@ -853,6 +806,7 @@
     <div class="footer-meta">
       <span>OptiCora obrt, vl. Marko Škiljan</span>
       <span class="made-in">100% Made in Croatia (EU)</span>
+      <a href="https://buymeacoffee.com/markoskiljan_opticora" target="_blank" rel="noopener" style="color:var(--text-dim);">☕ Podrži projekt</a>
       <span>© 2026 OptiCora</span>
     </div>
   </div>
